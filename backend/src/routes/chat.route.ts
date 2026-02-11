@@ -1,5 +1,12 @@
 import { Router } from "express";
+import { protectRoute } from "../middleware/auth";
+import { getChats, getOrCreateChat } from "../controllers/chat.controller";
 
 const router = Router();
+
+router.use(protectRoute);
+
+router.get("/", getChats);
+router.post("/with/:participent", getOrCreateChat);
 
 export default router;
